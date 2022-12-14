@@ -90,7 +90,7 @@ unsafe fn non_hdr_update_css2(arg: u64) {
     call_original!(arg)
 }
 
-static mut IS_USABLE: bool = false;
+static mut IS_USABLE: bool = true;
 
 #[skyline::hook(offset = 0x16cdb08, inline)]
 unsafe fn non_hdr_set_online_latency(ctx: &InlineCtx) {
@@ -105,12 +105,12 @@ unsafe fn non_hdr_set_online_latency(ctx: &InlineCtx) {
 
 #[skyline::hook(offset = 0x22d91f4, inline)]
 unsafe fn online_melee_any_scene_create(_: &InlineCtx) {
-    IS_USABLE = false;
+    IS_USABLE = true;
 }
 
 #[skyline::hook(offset = 0x22d9124, inline)]
 unsafe fn bg_matchmaking_seq(_: &InlineCtx) {
-    IS_USABLE = false;
+    IS_USABLE = true;
 }
 
 #[skyline::hook(offset = 0x22d9054, inline)]
@@ -120,7 +120,7 @@ unsafe fn arena_seq(_: &InlineCtx) {
 
 #[skyline::hook(offset = 0x23599b0, inline)]
 unsafe fn main_menu(_: &InlineCtx) {
-    IS_USABLE = false;
+    IS_USABLE = true;
 }
 
 extern "C" {
